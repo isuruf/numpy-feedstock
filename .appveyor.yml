@@ -31,7 +31,7 @@ install:
     # Configure the VM.
     - cmd: conda config --add channels conda-forge
     - cmd: conda config --add channels isuruf
-    - cmd: conda install --yes conda cmake vs2015_win-64 ninja "libcblas=3.8.0=1_netlib"
+    - cmd: conda install --yes conda cmake vs2015_win-64 ninja "libcblas=3.8.0=*_netlib"
 
 # Skip .NET project specific build phase.
 build: off
@@ -39,11 +39,11 @@ build: off
 test_script:
     - cmake -G "Ninja" -DCMAKE_PREFIX_PATH=%CONDA_PREFIX%\Library -DCMAKE_BUILD_TYPE=Release .
     - ninja
-    - conda install --yes "libcblas=3.8.0=0_mkl"
+    - conda install --yes "libcblas=3.8.0=*_mkl"
     - ctest --verbose
-    - conda install --yes "libcblas=3.8.0=0_blis"
+    - conda install --yes "libcblas=3.8.0=*_blis"
     - ctest --verbose
-    - conda install --yes "libcblas=3.8.0=0_openblas"
+    - conda install --yes "libcblas=3.8.0=*_openblas"
     - ctest --verbose
 
 # Enable this to be able to login to the build worker. You can use the
