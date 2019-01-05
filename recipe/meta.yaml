@@ -1,5 +1,4 @@
 {% set version = "1.15.4" %}
-{% set variant = "openblas" %}
 
 package:
   name: numpy
@@ -14,8 +13,6 @@ source:
 build:
   number: 1000
   skip: true  # [win32 or (win and py27)]
-  features:
-    - blas_{{ variant }}
 
 requirements:
   build:
@@ -25,13 +22,10 @@ requirements:
   host:
     - python
     - pip
-    - cython
-    - blas 1.1 {{ variant }}
-    - openblas
+    - libblas * *netlib
+    - libcblas * *netlib
   run:
     - python
-    - blas 1.1 {{ variant }}
-    - openblas
 
 test:
   requires:
@@ -57,3 +51,4 @@ extra:
     - pelson
     - rgommers
     - ocefpaf
+    - isuruf
