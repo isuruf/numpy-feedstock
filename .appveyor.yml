@@ -12,9 +12,6 @@ environment:
     - CONFIG: win_c_compilervs2015cxx_compilervs2015python3.6
       CONDA_INSTALL_LOCN: C:\Miniconda36-x64
 
-    - CONFIG: win_c_compilervs2015cxx_compilervs2015python3.7
-      CONDA_INSTALL_LOCN: C:\Miniconda36-x64
-
 
 # We always use a 64-bit machine, but can build x86 distributions
 # with the TARGET_ARCH variable.
@@ -28,24 +25,19 @@ install:
         ff_ci_pr_build -v --ci "appveyor" "%APPVEYOR_ACCOUNT_NAME%/%APPVEYOR_PROJECT_SLUG%" "%APPVEYOR_BUILD_NUMBER%" "%APPVEYOR_PULL_REQUEST_NUMBER%"
         del ff_ci_pr_build.py
 
-    # Cygwin's git breaks conda-build. (See https://github.com/conda-forge/conda-smithy-feedstock/pull/2.)
-    - cmd: rmdir C:\cygwin /s /q
-
     # Add path, activate `conda` and update conda.
     - cmd: call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
-    - cmd: conda.exe update --yes --quiet conda
-
-    - cmd: set PYTHONUNBUFFERED=1
 
     # Configure the VM.
-    - cmd: conda.exe install -n root -c conda-forge --yes conda-forge-ci-setup=2 conda-build
-    - cmd: setup_conda_rc .\ .\recipe .\.ci_support\%CONFIG%.yaml
-    - cmd: run_conda_forge_build_setup
+    - cmd: conda config --add channels conda-forge
+    - cmd: conda config --add channels isuruf
+    - cmd: conda install conda cmake vs2015_win-64 ninja "libcblas=3.8.0=0_netlib"
 
 # Skip .NET project specific build phase.
 build: off
 
 test_script:
-    - conda.exe build recipe -m .ci_support\%CONFIG%.yaml
-deploy_script:
-    - cmd: upload_package .\ .\recipe .ci_support\%CONFIG%.yaml
+    - cmake -G "Ninja" -DCMAKE_PREFIX_PATH=%CONDA_PREFIX%\Library .
+    - ninja
+    - conda install "libcblas=3.8.0=0_mkl"
+    - ctest --verbose
