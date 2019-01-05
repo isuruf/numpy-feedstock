@@ -24,6 +24,7 @@ requirements:
     - pip
     - libblas * *netlib
     - libcblas * *netlib
+    - liblapack * *netlib
   run:
     - python
 
