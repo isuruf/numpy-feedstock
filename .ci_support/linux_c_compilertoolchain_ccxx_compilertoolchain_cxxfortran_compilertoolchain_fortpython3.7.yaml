@@ -3,7 +3,7 @@ build_number_decrement:
 c_compiler:
 - toolchain_c
 channel_sources:
-- conda-forge,defaults
+- isuruf,conda-forge,defaults
 channel_targets:
 - conda-forge main
 cxx_compiler:
