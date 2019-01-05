@@ -2,7 +2,7 @@ project(blas_test)
 cmake_minimum_required(VERSION 3.10)
 enable_language(C)
 
-find_library(CBLAS_LIBRARY NAMES cblas)
+find_library(CBLAS_LIBRARY NAMES cblas libcblas)
 find_path(CBLAS_INCLUDE_DIR cblas.h)
 
 enable_testing()
