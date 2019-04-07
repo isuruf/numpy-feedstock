@@ -20,5 +20,4 @@ matrix:
       os: linux-ppc64le
 
 script:
-  - pip install shyaml --user
-  - ./.travis/run_docker_build.sh
+  - if [[ ${PLATFORM} =~ .*linux.* ]]; then pip install shyaml --user && ./.travis/run_docker_build.sh; fi
