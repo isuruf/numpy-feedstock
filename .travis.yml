@@ -5,6 +5,7 @@
 language: generic
 
 os: osx
+arch: amd64
 osx_image: xcode12
 
 script:
