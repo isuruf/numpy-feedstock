@@ -8,6 +8,6 @@ os: osx
 osx_image: xcode12
 
 script:
-  - ld64 --version
-  - install_name_tool --version
+  - ld -v
+  - otool --version
   - clang --version
