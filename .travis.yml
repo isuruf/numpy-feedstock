@@ -12,3 +12,4 @@ script:
   - ld -v
   - otool --version
   - clang --version
+  - ls -al /Applications/Xcode-12.for.macOS.Universal.Apps.beta.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
