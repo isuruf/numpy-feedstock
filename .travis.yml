@@ -6,7 +6,7 @@ language: generic
 
 os: osx
 arch: amd64
-osx_image: xcode12
+osx_image: xcode12u
 
 script:
   - ld -v
