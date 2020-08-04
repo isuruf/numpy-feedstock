@@ -15,3 +15,4 @@ script:
   - ls -al /Applications/Xcode-12.for.macOS.Universal.Apps.beta.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
   - cat /Applications/Xcode-12.for.macOS.Universal.Apps.beta.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libSystem.B.tbd
   - cat /Applications/Xcode-12.for.macOS.Universal.Apps.beta.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/SDKSettings.json
+  - xcode-select -p
